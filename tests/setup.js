@@ -1,5 +1,5 @@
 // Mock the Face-API.js library
-global.faceapi = {
+globalThis.faceapi = {
   nets: {
     tinyFaceDetector: {
       load: jest.fn().mockResolvedValue(true),
@@ -21,7 +21,7 @@ global.faceapi = {
 };
 
 // Mock MediaDevices
-global.navigator.mediaDevices = {
+globalThis.navigator.mediaDevices = {
   getUserMedia: jest.fn().mockResolvedValue({
     getTracks: () => [{
       stop: jest.fn()

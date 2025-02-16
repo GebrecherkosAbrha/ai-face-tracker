@@ -1,7 +1,9 @@
-module.exports = {
+export default {
   testEnvironment: 'jsdom',
+  transform: {},
+  extensionsToTreatAsEsm: ['.js'],
   moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': '<rootDir>/tests/mocks/styleMock.js',
+    '\\.(css|less|scss|sass)$': '<rootDir>/tests/mocks/styleMock.js'
   },
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
   coverageDirectory: 'coverage',

@@ -1,7 +1,7 @@
 /**
  * Main application class for face tracking functionality
  */
-class FaceTrackingApp {
+export class FaceTrackingApp {
     /**
      * Initialize the application components and state
      */
