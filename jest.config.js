@@ -1,7 +1,6 @@
 export default {
   testEnvironment: 'jsdom',
   transform: {},
-  extensionsToTreatAsEsm: ['.js'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': '<rootDir>/tests/mocks/styleMock.js'
   },
