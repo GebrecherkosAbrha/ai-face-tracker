@@ -74,14 +74,49 @@ npm run test:e2e
 ## Project Structure
 
 ```
-src/
-├── css/
-│   └── styles.css    # Application styling
-├── js/
-│   ├── app.js        # Main application logic
-│   └── config.js     # Configuration settings
-└── index.html        # Main HTML file
+ai-face-tracker/
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # GitHub Actions CI configuration
+├── cypress/
+│   ├── e2e/
+│   │   └── face-tracker.cy.js  # End-to-end tests
+│   ├── fixtures/
+│   │   └── example.json        # Test fixtures
+│   └── support/
+│       ├── commands.js         # Custom Cypress commands
+│       ├── config.js           # Test configuration
+│       └── e2e.js             # E2E test setup
+├── src/
+│   ├── css/
+│   │   └── styles.css         # Application styling
+│   ├── js/
+│   │   ├── app.js            # Main application logic
+│   │   └── config.js         # Application configuration
+│   └── index.html            # Main HTML file
+├── tests/
+│   ├── mocks/
+│   │   └── styleMock.js      # Style mocking for tests
+│   ├── app.test.js           # Unit tests
+│   └── setup.js              # Test setup
+├── .editorconfig             # Editor configuration
+├── .gitignore               # Git ignore rules
+├── .npmrc                   # NPM configuration
+├── CONTRIBUTING.md          # Contribution guidelines
+├── LICENSE                  # MIT license
+├── README.md               # Project documentation
+├── cypress.config.js       # Cypress configuration
+├── jest.config.js          # Jest configuration
+├── jsconfig.json           # JavaScript configuration
+└── package.json            # Project dependencies and scripts
 ```
+
+The project follows a modular structure:
+- `/src`: Source code and assets
+- `/tests`: Unit tests and test configuration
+- `/cypress`: End-to-end tests
+- `/.github`: CI/CD configuration
+- Configuration files in root directory
 
 ## Implementation Details
 
