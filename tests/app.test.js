@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { FaceTrackingApp } from '../src/js/app.js';
 
 describe('FaceTrackingApp', () => {

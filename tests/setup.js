@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 // Mock the Face-API.js library
 globalThis.faceapi = {
   nets: {
