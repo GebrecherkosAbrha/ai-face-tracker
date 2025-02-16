@@ -5,6 +5,12 @@ describe('FaceTrackingApp', () => {
   let app;
   
   beforeEach(() => {
+    // Mock canvas methods
+    HTMLCanvasElement.prototype.getContext = jest.fn(() => ({
+      drawImage: jest.fn(),
+      clearRect: jest.fn()
+    }));
+
     // Setup DOM elements
     document.body.innerHTML = `
       <video id="videoPlayer"></video>
