@@ -24,6 +24,9 @@ globalThis.CONFIG = {
   }
 };
 
+// Mock window.alert
+globalThis.alert = jest.fn();
+
 // Mock the Face-API.js library
 globalThis.faceapi = {
   nets: {
@@ -46,11 +49,23 @@ globalThis.faceapi = {
   TinyFaceDetectorOptions: jest.fn()
 };
 
+// Create a mock MediaStream
+const mockStream = {
+  getTracks: () => [{
+    stop: jest.fn(),
+    kind: 'video',
+    enabled: true,
+    readyState: 'live'
+  }],
+  getVideoTracks: () => [{
+    stop: jest.fn(),
+    kind: 'video',
+    enabled: true,
+    readyState: 'live'
+  }]
+};
+
 // Mock MediaDevices
 globalThis.navigator.mediaDevices = {
-  getUserMedia: jest.fn().mockResolvedValue({
-    getTracks: () => [{
-      stop: jest.fn()
-    }]
-  })
+  getUserMedia: jest.fn().mockResolvedValue(mockStream)
 }; 

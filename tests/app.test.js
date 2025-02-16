@@ -4,7 +4,7 @@ import { FaceTrackingApp } from '../src/js/app.js';
 describe('FaceTrackingApp', () => {
   let app;
   
-  beforeEach(() => {
+  beforeEach(async () => {
     // Mock canvas methods
     HTMLCanvasElement.prototype.getContext = jest.fn(() => ({
       drawImage: jest.fn(),
@@ -25,7 +25,11 @@ describe('FaceTrackingApp', () => {
       <div id="snapshotsContainer"></div>
     `;
     
+    // Create app instance
     app = new FaceTrackingApp();
+    
+    // Wait for initialization
+    await new Promise(resolve => setTimeout(resolve, 0));
   });
 
   afterEach(() => {
