@@ -11,6 +11,9 @@ describe('FaceTrackingApp', () => {
       clearRect: jest.fn()
     }));
 
+    // Mock canvas toDataURL
+    HTMLCanvasElement.prototype.toDataURL = jest.fn().mockReturnValue('data:image/png;base64,fake-image-data');
+
     // Setup DOM elements
     document.body.innerHTML = `
       <video id="videoPlayer"></video>
@@ -24,6 +27,11 @@ describe('FaceTrackingApp', () => {
       <button id="takeSnapshot">Take Snapshot</button>
       <div id="snapshotsContainer"></div>
     `;
+
+    // Mock video properties
+    const videoElement = document.getElementById('videoPlayer');
+    Object.defineProperty(videoElement, 'videoWidth', { value: 640 });
+    Object.defineProperty(videoElement, 'videoHeight', { value: 480 });
     
     // Create app instance
     app = new FaceTrackingApp();
@@ -34,6 +42,7 @@ describe('FaceTrackingApp', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
+    document.body.innerHTML = '';
   });
 
   test('initializes with correct default values', () => {
@@ -63,11 +72,23 @@ describe('FaceTrackingApp', () => {
     expect(toggleButton.textContent).toBe('Enable Effects');
   });
 
-  test('takes snapshot when button is clicked', () => {
+  test('takes snapshot when button is clicked', async () => {
+    // Setup video element with dimensions
+    const videoElement = document.getElementById('videoPlayer');
+    Object.defineProperty(videoElement, 'videoWidth', { value: 640 });
+    Object.defineProperty(videoElement, 'videoHeight', { value: 480 });
+
+    // Take snapshot
     const snapshotButton = document.getElementById('takeSnapshot');
     snapshotButton.click();
+
+    // Wait for async operations
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    // Check snapshot was created
     const snapshots = document.getElementById('snapshotsContainer').children;
     expect(snapshots.length).toBe(1);
     expect(snapshots[0].tagName).toBe('IMG');
+    expect(snapshots[0].src).toBe('data:image/png;base64,fake-image-data');
   });
 }); 

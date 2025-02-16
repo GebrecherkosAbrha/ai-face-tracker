@@ -68,4 +68,15 @@ const mockStream = {
 // Mock MediaDevices
 globalThis.navigator.mediaDevices = {
   getUserMedia: jest.fn().mockResolvedValue(mockStream)
-}; 
+};
+
+// Mock video element
+class MockVideoElement extends HTMLVideoElement {
+  constructor() {
+    super();
+    this.videoWidth = 640;
+    this.videoHeight = 480;
+  }
+}
+
+customElements.define('mock-video', MockVideoElement, { extends: 'video' }); 
